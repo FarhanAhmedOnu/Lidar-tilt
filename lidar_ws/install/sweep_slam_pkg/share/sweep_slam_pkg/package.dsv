@@ -1,0 +1,9 @@
+source;share/sweep_slam_pkg/hook/pythonpath.ps1
+source;share/sweep_slam_pkg/hook/pythonpath.dsv
+source;share/sweep_slam_pkg/hook/pythonpath.sh
+source;share/sweep_slam_pkg/hook/ament_prefix_path.ps1
+source;share/sweep_slam_pkg/hook/ament_prefix_path.dsv
+source;share/sweep_slam_pkg/hook/ament_prefix_path.sh
+source;../../build/sweep_slam_pkg/share/sweep_slam_pkg/hook/pythonpath_develop.ps1
+source;../../build/sweep_slam_pkg/share/sweep_slam_pkg/hook/pythonpath_develop.dsv
+source;../../build/sweep_slam_pkg/share/sweep_slam_pkg/hook/pythonpath_develop.sh
