@@ -79,6 +79,17 @@ class ArduinoInterface:
             return self.data_queue.get_nowait()
         except queue.Empty:
             return None
+        
+    def send_servo_command(self, pwm_microseconds):
+        """Sends a PWM command to the servo. Thread-safe."""
+        if self.ser and self.ser.is_open:
+            # Constrain to safe physical limits of the MG996R
+            us = max(1000, min(2000, int(pwm_microseconds)))
+            cmd = f"S{us}\n"
+            try:
+                self.ser.write(cmd.encode('utf-8'))
+            except serial.SerialException:
+                pass # Port might be closing
 
     def close(self):
         """Safely shuts down the thread and closes the serial port."""

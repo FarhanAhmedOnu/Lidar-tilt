@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             # THIS LINE MAKES YOUR NODE EXECUTABLE
             'imu_publisher_node = sweep_slam_pkg.imu_publisher_node:main',
+            'sweep_generator_node = sweep_slam_pkg.sweep_generator_node:main',
         ],
     },
 )

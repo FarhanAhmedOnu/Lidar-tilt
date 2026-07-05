@@ -1,3 +1,4 @@
+from std_msgs.msg import Int32
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Imu
@@ -6,6 +7,10 @@ import os
 
 class ImuPublisherNode(Node):
     def __init__(self):
+        # Subscribe to servo PWM commands (in microseconds, e.g., 1000 to 2000)
+        self.servo_sub = self.create_subscription(
+            Int32, '/servo_pwm_cmd', self.servo_cmd_callback, 10)
+        
         super().__init__('arduino_imu_node')
         
         # Declare parameters so they can be changed in the launch file
@@ -61,6 +66,10 @@ class ImuPublisherNode(Node):
         if hasattr(self, 'interface'):
             self.interface.close()
         super().destroy_node()
+    
+    def servo_cmd_callback(self, msg):
+        """Receives PWM command and sends it to the Arduino."""
+        self.interface.send_servo_command(msg.data)
 
 def main(args=None):
     rclpy.init(args=args)
